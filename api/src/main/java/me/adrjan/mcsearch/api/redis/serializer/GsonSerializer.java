@@ -1,11 +1,11 @@
 package me.adrjan.mcsearch.api.redis.serializer;
 
 import com.google.gson.Gson;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
 @Getter
+@AllArgsConstructor
 public class GsonSerializer implements Serializer {
 
     private final Gson gson;

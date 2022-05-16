@@ -7,8 +7,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="migration" />
         <module name="search" />
+        <module name="bots" />
+        <module name="discord" />
+        <module name="migration" />
+        <module name="telegram" />
+        <module name="bots-api" />
         <module name="api" />
       </profile>
     </annotationProcessing>

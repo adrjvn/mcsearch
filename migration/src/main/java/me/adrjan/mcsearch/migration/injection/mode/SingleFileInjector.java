@@ -15,6 +15,7 @@ import me.adrjan.mcsearch.search.impl.SourceSearch;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.Locale;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiFunction;
@@ -46,7 +47,7 @@ public abstract class SingleFileInjector<T> implements Injector {
 
             //this.redisDataSource.injectToList(
             //        getSearchMap(),
-            //        split[0], // 0 should always be key
+            //        split[0].toLowerCase(Locale.ROOT), // 0 should always be key
             //        this.buildFunction.apply(date, split));
 
             atomicInteger.incrementAndGet();
