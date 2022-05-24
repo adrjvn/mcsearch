@@ -4,11 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import me.adrjan.mcsearch.api.cache.LocalTempCache;
 import me.adrjan.mcsearch.api.redis.RedisDataSource;
-import me.adrjan.mcsearch.search.filter.Filter;
 
 import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @Getter
 @AllArgsConstructor
@@ -31,7 +32,7 @@ public abstract class SearchWrapper<T> implements Search<T> {
         return result;
     }
 
-    public Set<T> find(String key, Filter<T> filter) {
-        return filter.filter(this.find(key));
+    public Set<T> find(String key, Predicate<T> filter) {
+        return this.find(key).stream().filter(filter).collect(Collectors.toSet());
     }
 }

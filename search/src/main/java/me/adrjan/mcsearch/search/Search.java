@@ -1,12 +1,11 @@
 package me.adrjan.mcsearch.search;
 
-import me.adrjan.mcsearch.search.filter.Filter;
-
 import java.util.Set;
+import java.util.function.Predicate;
 
 public interface Search<T> {
 
     Set<T> find(String key);
 
-    Set<T> find(String key, Filter<T> filter);
+    Set<T> find(String key, Predicate<T> filter);
 }
