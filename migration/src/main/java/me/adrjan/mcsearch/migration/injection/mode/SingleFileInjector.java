@@ -7,8 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import me.adrjan.mcsearch.api.data.Source;
 import me.adrjan.mcsearch.api.redis.RedisDataSource;
 import me.adrjan.mcsearch.api.redis.SearchMap;
-import me.adrjan.mcsearch.migration.Constans;
 import me.adrjan.mcsearch.migration.injection.Injector;
+import me.adrjan.mcsearch.migration.injection.mode.impl.SourceInjector;
 import me.adrjan.mcsearch.search.Search;
 import me.adrjan.mcsearch.search.impl.SourceSearch;
 
@@ -28,6 +28,8 @@ public abstract class SingleFileInjector<T> implements Injector {
     private final RedisDataSource redisDataSource;
     private final String searchMap;
     private final BiFunction<Long, String[], T> buildFunction;
+
+    private final Search<Source> sourceSearch = new SourceSearch(this.redisDataSource);
 
     @SneakyThrows
     @Override
@@ -53,21 +55,13 @@ public abstract class SingleFileInjector<T> implements Injector {
             atomicInteger.incrementAndGet();
             line = reader.readLine();
         }
-        if (Constans.INJECT_RECORDS_AND_SOURCE && !searchMap.equals(SearchMap.MAP_SOURCES)) {
-            Search<Source> search = new SourceSearch(this.redisDataSource);
-            Set<Source> set = search.find(source);
-            if (set.isEmpty()) {
-                this.redisDataSource.inject(
-                        SearchMap.MAP_SOURCES,
-                        source,
-                        new Source(
-                                source,
-                                "-",
-                                "-",
-                                atomicInteger.get(),
-                                date));
-                log.info("Injected source=" + source);
-            }
+        //if (Constans.INJECT_RECORDS_AND_SOURCE && !searchMap.equals(SearchMap.MAP_SOURCES)) {
+        if (!(this instanceof SourceInjector) && this.sourceSearch.find(source).isEmpty()) {
+            this.redisDataSource.inject(
+                    SearchMap.MAP_SOURCES,
+                    source,
+                    new Source(source, "-", "-", atomicInteger.get(), date));
+            log.info("Injected source=" + source);
         }
         log.info("Injected " + atomicInteger.get() + " records.");
     }

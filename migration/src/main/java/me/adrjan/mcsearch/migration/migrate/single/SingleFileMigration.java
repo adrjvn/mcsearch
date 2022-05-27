@@ -1,7 +1,7 @@
 package me.adrjan.mcsearch.migration.migrate.single;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import me.adrjan.mcsearch.api.data.RecordBase;
 import me.adrjan.mcsearch.migration.migrate.Migration;
@@ -14,7 +14,7 @@ import java.io.FileReader;
 import java.util.List;
 
 @Getter
-@RequiredArgsConstructor
+@AllArgsConstructor
 public abstract class SingleFileMigration extends MigrationDataContainer implements Migration {
 
     private final GeoResolver geoResolver;
