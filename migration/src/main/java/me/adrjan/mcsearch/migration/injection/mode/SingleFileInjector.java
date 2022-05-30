@@ -1,6 +1,5 @@
 package me.adrjan.mcsearch.migration.injection.mode;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -15,13 +14,10 @@ import me.adrjan.mcsearch.search.impl.SourceSearch;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.Locale;
-import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiFunction;
 
 @Slf4j
-@AllArgsConstructor
 @Getter
 public abstract class SingleFileInjector<T> implements Injector {
 
@@ -29,7 +25,15 @@ public abstract class SingleFileInjector<T> implements Injector {
     private final String searchMap;
     private final BiFunction<Long, String[], T> buildFunction;
 
-    private final Search<Source> sourceSearch = new SourceSearch(this.redisDataSource);
+    private final Search<Source> sourceSearch;
+
+
+    public SingleFileInjector(RedisDataSource redisDataSource, String searchMap, BiFunction<Long, String[], T> buildFunction) {
+        this.redisDataSource = redisDataSource;
+        this.searchMap = searchMap;
+        this.buildFunction = buildFunction;
+        this.sourceSearch = new SourceSearch(redisDataSource);
+    }
 
     @SneakyThrows
     @Override
