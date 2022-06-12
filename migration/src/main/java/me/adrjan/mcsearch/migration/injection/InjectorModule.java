@@ -15,7 +15,7 @@ public class InjectorModule implements Module {
 
     public void start() {
         Injector injector = this.injectorFactory.get(Constans.INJECTION_MODE);
-        File file = new File(Constans.PATH_FILE_TO_INJECT + Constans.DATA_SOURCE);
+        File file = new File(Constans.PATH_FILE_TO_INJECT + (Constans.INJECTION_MODE == InjectorMode.SINGLE ? Constans.DATA_SOURCE : ""));
         log.info("Loaded file " + file.getPath());
         injector.inject(file, Constans.DATA_SOURCE);
         log.info("Done");

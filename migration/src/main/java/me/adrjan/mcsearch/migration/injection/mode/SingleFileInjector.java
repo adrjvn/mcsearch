@@ -14,6 +14,7 @@ import me.adrjan.mcsearch.search.impl.SourceSearch;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.Locale;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiFunction;
 
@@ -39,7 +40,7 @@ public abstract class SingleFileInjector<T> implements Injector {
     @Override
     public void inject(File file, String source) {
         final long date = file.lastModified();
-        BufferedReader reader = new BufferedReader(new FileReader(file.getPath() + ".txt"));
+        BufferedReader reader = new BufferedReader(new FileReader(file.getPath()));
         String line = reader.readLine();
         AtomicInteger atomicInteger = new AtomicInteger();
         while (line != null) {
@@ -47,14 +48,14 @@ public abstract class SingleFileInjector<T> implements Injector {
             String[] split = line.split("\\|");
 
 
-            T object = this.buildFunction.apply(date, split);
-            String serialized = this.redisDataSource.getSerializer().serialize(object);
-            log.info(serialized);
+            //T object = this.buildFunction.apply(date, split);
+            //String serialized = this.redisDataSource.getSerializer().serialize(object);
+            //log.info(serialized);
 
-            //this.redisDataSource.injectToList(
-            //        getSearchMap(),
-            //        split[0].toLowerCase(Locale.ROOT), // 0 should always be key
-            //        this.buildFunction.apply(date, split));
+            this.redisDataSource.injectToList(
+                    getSearchMap(),
+                    split[0].toLowerCase(Locale.ROOT), // 0 should always be key
+                    this.buildFunction.apply(date, split));
 
             atomicInteger.incrementAndGet();
             line = reader.readLine();

@@ -17,4 +17,37 @@
         <maven.compiler.target>16</maven.compiler.target>
     </properties>
 
+
+    <dependencies>
+        <dependency>
+            <groupId>me.adrjan.mcsearch</groupId>
+            <artifactId>api</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>me.adrjan.mcsearch</groupId>
+            <artifactId>search</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>me.adrjan.mcsearch</groupId>
+            <artifactId>bots-api</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.20</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>net.dv8tion</groupId>
+            <artifactId>JDA</artifactId>
+            <version>5.0.0-alpha.11</version>
+        </dependency>
+    </dependencies>
 </project>
