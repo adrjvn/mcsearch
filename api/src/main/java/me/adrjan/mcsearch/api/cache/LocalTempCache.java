@@ -17,9 +17,7 @@ public class LocalTempCache<K, V> implements me.adrjan.mcsearch.api.cache.Cache<
     }
 
     public Optional<V> get(K key) {
-        V value = this.map.getIfPresent(key);
-        if (value == null) return Optional.empty();
-        return Optional.of(value);
+        return Optional.ofNullable(this.map.getIfPresent(key));
     }
 
     public Set<V> values() {

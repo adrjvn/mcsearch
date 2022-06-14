@@ -61,7 +61,7 @@ public abstract class SingleFileInjector<T> implements Injector {
             line = reader.readLine();
         }
         //if (Constans.INJECT_RECORDS_AND_SOURCE && !searchMap.equals(SearchMap.MAP_SOURCES)) {
-        if (!(this instanceof SourceInjector) && this.sourceSearch.find(source).isEmpty()) {
+        if (!(this instanceof SourceInjector) && this.sourceSearch.find(source).getResults().isEmpty()) {
             this.redisDataSource.inject(
                     SearchMap.MAP_SOURCES,
                     source,
