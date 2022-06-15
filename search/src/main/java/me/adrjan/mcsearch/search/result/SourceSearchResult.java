@@ -1,4 +1,4 @@
-package me.adrjan.mcsearch.api.data.result;
+package me.adrjan.mcsearch.search.result;
 
 import me.adrjan.mcsearch.api.data.Source;
 

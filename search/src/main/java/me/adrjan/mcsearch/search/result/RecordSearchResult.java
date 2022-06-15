@@ -1,4 +1,4 @@
-package me.adrjan.mcsearch.api.data.result;
+package me.adrjan.mcsearch.search.result;
 
 import lombok.Getter;
 import lombok.Setter;

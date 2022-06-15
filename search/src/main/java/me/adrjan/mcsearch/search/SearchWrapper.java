@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import me.adrjan.mcsearch.api.cache.LocalTempCache;
-import me.adrjan.mcsearch.api.data.result.SearchResult;
+import me.adrjan.mcsearch.search.result.SearchResult;
 import me.adrjan.mcsearch.api.redis.RedisDataSource;
 
 import java.util.Locale;

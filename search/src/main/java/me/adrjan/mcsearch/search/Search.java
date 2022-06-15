@@ -1,6 +1,6 @@
 package me.adrjan.mcsearch.search;
 
-import me.adrjan.mcsearch.api.data.result.SearchResult;
+import me.adrjan.mcsearch.search.result.SearchResult;
 
 public interface Search<T> {
 
