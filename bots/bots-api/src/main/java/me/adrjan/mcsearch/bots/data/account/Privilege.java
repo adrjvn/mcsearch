@@ -9,7 +9,8 @@ public enum Privilege {
     PASSWORDS,
     INTERNATIONAL,
     PRIVATE_DATA,
-    API;
+    API,
+    GUILD_SEARCH;
 
     public static final Set<Privilege> VALUES = Collections.unmodifiableSet(EnumSet.allOf(Privilege.class));
 }
