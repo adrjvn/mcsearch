@@ -16,6 +16,7 @@
         <module>bots/telegram</module>
         <module>bots/discord</module>
         <module>bots/bots-api</module>
+        <module>bots/web-api</module>
     </modules>
 
     <properties>

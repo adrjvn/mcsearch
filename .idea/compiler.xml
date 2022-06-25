@@ -11,6 +11,7 @@
         <module name="bots" />
         <module name="discord" />
         <module name="migration" />
+        <module name="web-api" />
         <module name="telegram" />
         <module name="bots-api" />
         <module name="api" />
